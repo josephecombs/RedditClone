@@ -1,0 +1,20 @@
+<h2><%= @sub.title %></h2>
+
+<%= @sub.description %>
+
+<h3>All posts:</h3>
+
+<% @sub.posts.each do |post| %>
+  <% if post.url %>
+    <a href="http://<%= post.url %>"><%= post.title %></a>
+  <% else %>
+    <%= post.title %>
+  <% end %>
+  <li><%= link_to "comments", post_url(post)%></li>
+<% end %>
+
+<br>
+
+<li><%= link_to "Edit this sub", edit_sub_url %></li>
+<li><%= link_to "Create a post for this sub", new_sub_post_url(@sub.id) %></li>
+

@@ -7,19 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <span id="errors">
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
     <%= error %><br>
   <% end %>
 <% end %>
+  </span>
 
 <% if current_user %>
-  <%= button_to "Sign Out", session_url, method: "DELETE"%>
+  <%= link_to "Sign Out", session_url, method: "DELETE"%>
+<% else %>
+  <%= link_to "Sign In", new_session_url %>
+  <%= link_to "Register", new_user_url %>
 <% end %>
 
 
 
 <%= yield %>
 
+<% if current_user %>
+<%= link_to "All sub-reddits", subs_url %>
+<% end %>
 </body>
 </html>

@@ -1,0 +1,7 @@
+<h1>ALL SUB REDDITS</h1>
+
+<% Sub.all.each do |sub| %>
+  <li><%= link_to sub.title, sub_url(sub) %>|||||<%= link_to "Edit", edit_sub_url(sub.id)%></li>
+<% end %>
+</br>
+<%= link_to "Add a new Sub-Reddit", new_sub_url %>

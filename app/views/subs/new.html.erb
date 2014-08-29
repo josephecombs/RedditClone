@@ -1,0 +1,9 @@
+<h2>Create New Sub-Reddit</h2>
+
+<form action="<%= subs_url %>" method="POST" accept-charset="utf-8">
+  <label for="title">Title:</label><input type="text" name="sub[title]" value="<%= @sub.title %>" id="title">
+  <label for="description">Description:</label><textarea name="sub[description]" value="<%= @sub.description %>" id="description"><%= @sub.description %></textarea>
+  
+
+  <p><input type="submit" value="Continue &rarr;"></p>
+</form>
