@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :is_author?, only: [:edit, :update]
+  before_action :logged_in?, only: [:create, :new]
   
   def show
     @post = Post.find(params[:id])

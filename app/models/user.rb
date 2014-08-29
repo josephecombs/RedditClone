@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
     class_name: "Sub"
   )
   
+  has_many(
+    :posts,
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: "Post"
+  ) 
+  
   def self.generate_token
     SecureRandom.urlsafe_base64
   end

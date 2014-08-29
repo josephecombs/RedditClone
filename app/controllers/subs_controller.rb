@@ -1,5 +1,5 @@
 class SubsController < ApplicationController
-  before_action :logged_in?
+  before_action :logged_in?, only: [:create, :new]
   before_action :is_moderator?, only: [:update]
 
   def index
