@@ -1,0 +1,21 @@
+<form action="<%= action_url %>" method="post" accept-charset="utf-8">
+  
+  <label>Username: 
+    <input 
+      type="text" 
+      name="user[username]" 
+      value="<%= @user.username %>" 
+      id="">
+  </label>
+
+  <label>Password: 
+    <input 
+      type="password" 
+      name="user[password]" 
+      value="" 
+      id="">
+  </label>
+  
+  <button>Submit</button>
+  
+</form>
