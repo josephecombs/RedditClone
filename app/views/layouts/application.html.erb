@@ -16,7 +16,7 @@
   </span>
 
 <% if current_user %>
-  <%= link_to "Sign Out", session_url, method: "DELETE"%>
+  <%= button_to "Sign Out", session_url, method: :delete %>
 <% else %>
   <%= link_to "Sign In", new_session_url %>
   <%= link_to "Register", new_user_url %>

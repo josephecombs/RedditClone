@@ -15,12 +15,19 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     
+    
     @post.author_id = current_user.id
-    @post.sub_id = params[:sub_id] 
+    
+    # @post = current_user.posts.new(post_params)
     
     if @post.save
-      flash[:errors] = ["post successful"]
-      redirect_to sub_url(@post.sub)
+      #write records to join table
+      # post_params.sub_ids.each do |sub_id|
+#         PostSub.create!(@post.id, sub_id)
+#       end
+      flash[:notice] = ["post successful"]
+      redirect_to post_url(@post)
+      # redirect_to sub_url(@post.sub)
     else
       flash[:errors] = @post.errors.full_messages
       render :new
@@ -30,6 +37,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    # @post = current_user.posts.find(params[:id])
     render :edit
   end
 
@@ -37,8 +45,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     
     if @post.update_attributes(post_params)
-      flash[:errors] = ["edit successful"]
-      redirect_to sub_url(@post.sub)
+      flash[:notice] = ["edit successful"]
+      redirect_to post_url(@post)
     else
       flash[:errors] = @post.errors.full_messages
       render :new
@@ -47,10 +55,11 @@ class PostsController < ApplicationController
   
   private
   def post_params
-    params.require(:post).permit(:title, :url, :content, :sub_id, :author_id)
+    params.require(:post).permit(:title, :url, :content, :author_id, :sub_ids => [])
   end
   
   def is_author?
+    @post = Post.find(params[:id])
     unless @post.author == current_user
       flash[:errors] = ["You are not the author of this post!"]
       redirect_to post_url(@post)

@@ -1,4 +1,8 @@
-<h1>Sub: <%= @post.sub.title %></h1>
+<h1 id="subs">Subs</h1>
+<% @post.subs.sort.each do |sub| %>
+  <p><%= sub.title %></p>
+<% end %>
+
 
 <h2>Post: <%= @post.title %></h2>
 
